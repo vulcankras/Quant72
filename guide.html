@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quant72 — Guide &amp; Use-cases</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/quant72.css" />
+<style>
+  .g-hero { position: relative; z-index: 3; padding: 80px 0 50px; border-bottom: 1px solid var(--line); text-align: center; }
+  .g-hero h1 { font-size: clamp(40px, 6vw, 68px); margin-top: 18px; }
+  .g-hero p { color: var(--text-mute); font-size: 19px; max-width: 600px; margin: 18px auto 0; }
+
+  .g-body { position: relative; z-index: 3; display: grid; grid-template-columns: 220px 1fr; max-width: 1180px; margin: 0 auto; }
+  .g-rail { position: sticky; top: 64px; align-self: start; height: calc(100vh - 64px); border-right: 1px solid var(--line); padding: 36px 20px; }
+  .g-rail h6 { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-faint); margin: 0 0 14px 10px; }
+  .g-rail a { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-mute); padding: 8px 10px; border-radius: 4px; transition: all .14s; }
+  .g-rail a:hover, .g-rail a.active { color: var(--accent); background: var(--accent-soft); }
+  .g-rail a .gl { color: var(--accent); width: 16px; text-align: center; }
+
+  .g-main { padding: 48px 56px 120px; min-width: 0; }
+  .uc { scroll-margin-top: 84px; margin-bottom: 64px; }
+  .uc-num { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: .12em; }
+  .uc h2 { font-size: 32px; margin: 8px 0 12px; }
+  .uc > p { color: var(--text-mute); font-size: 16px; line-height: 1.7; max-width: 660px; margin: 0 0 22px; }
+
+  .uc-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .prompts { display: flex; flex-direction: column; gap: 10px; }
+  .prompt-lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 2px; }
+  .prompt { display: flex; align-items: center; gap: 11px; border: 1px solid var(--line-2); background: var(--bg-1); border-radius: 6px; padding: 13px 15px; font-family: var(--mono); font-size: 13px; color: var(--text); cursor: pointer; transition: all .15s; text-align: left; }
+  .prompt:hover { border-color: var(--line-3); background: var(--bg-2); transform: translateX(2px); }
+  .prompt .chev { color: var(--accent); }
+  .prompt .go { margin-left: auto; color: var(--text-faint); font-size: 12px; }
+  .prompt:hover .go { color: var(--accent); }
+
+  .returns { border: 1px solid var(--line); background: var(--bg-1); border-radius: 8px; overflow: hidden; }
+  .returns-hd { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-faint); padding: 11px 15px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .returns-hd .tag { color: var(--accent); }
+  .returns-bd { padding: 15px; display: flex; flex-direction: column; gap: 9px; }
+  .ret-line { font-size: 13.5px; color: var(--text-mute); display: flex; gap: 9px; line-height: 1.5; }
+  .ret-line::before { content: "▸"; color: var(--accent); flex: none; }
+
+  .g-cta { position: relative; z-index: 3; text-align: center; padding: 80px 20px 100px; border-top: 1px solid var(--line); }
+  .g-cta h2 { font-size: clamp(30px, 4vw, 48px); }
+  .g-cta p { color: var(--text-mute); font-size: 17px; margin: 16px auto 30px; max-width: 520px; }
+
+  @media (max-width: 860px) {
+    .g-body { grid-template-columns: 1fr; }
+    .g-rail { display: none; }
+    .g-main { padding: 36px 22px 80px; }
+    .uc-demo { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="q-nav">
+  <a class="q-brand" href="index.html">
+    <img src="assets/logo.jpg" alt="Quant72" />
+    <span class="name">Quant72<b> AI</b></span>
+  </a>
+  <div class="q-navlinks">
+    <a href="index.html">Home</a>
+    <a href="docs.html">Docs</a>
+    <a href="guide.html" class="active">Guide</a>
+    <a href="app.html">App</a>
+    <a href="app.html" class="btn btn-primary" style="margin-left:10px;">Launch Terminal →</a>
+  </div>
+</nav>
+
+<header class="g-hero">
+  <div class="wrap">
+    <div class="kicker" style="justify-content:center;">Guide · Use-cases</div>
+    <h1>Talk to the market.</h1>
+    <p>Quant72 turns plain-English questions into on-chain answers. Here's how to drive it — tap any prompt to run it live in the Terminal.</p>
+  </div>
+</header>
+
+<div class="g-body">
+  <nav class="g-rail" id="rail">
+    <h6>Use-cases</h6>
+    <a href="#price"><span class="gl">▤</span> Price &amp; charts</a>
+    <a href="#forecast"><span class="gl">◊</span> Price forecast</a>
+    <a href="#trending"><span class="gl">↗</span> Trending radar</a>
+    <a href="#narratives"><span class="gl">◈</span> Narratives</a>
+    <a href="#sentiment"><span class="gl">✦</span> Smart mentions</a>
+    <a href="#risk"><span class="gl">◎</span> Rug analysis</a>
+    <a href="#portfolio"><span class="gl">◇</span> Portfolio</a>
+  </nav>
+
+  <main class="g-main">
+
+    <section class="uc" id="price">
+      <div class="uc-num">USE-CASE 01</div>
+      <h2>Check a token's price &amp; chart</h2>
+      <p>Ask for any Solana token and Quant72 runs <code class="mono accent">FETCH_PRICE</code>, returning the live price, 24h move, volume and a candlestick chart you can scan in seconds.</p>
+      <div class="uc-demo">
+        <div class="prompts">
+          <div class="prompt-lbl">Try asking</div>
+          <a class="prompt" href="app.html?q=Show%20me%20the%20price%20and%20chart%20for%20SOL"><span class="chev">›_</span>Show me the price and chart for SOL<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=How%20much%20is%20WIF%20trading%20at%3F"><span class="chev">›_</span>How much is WIF trading at?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Price%20chart%20for%20JUP"><span class="chev">›_</span>Price chart for JUP<span class="go">run ↗</span></a>
+        </div>
+        <div class="returns">
+          <div class="returns-hd"><span class="tag">returns</span> FETCH_PRICE</div>
+          <div class="returns-bd">
+            <div class="ret-line">Live price, 24h change &amp; spread</div>
+            <div class="ret-line">Candlestick chart with timeframe toggle</div>
+            <div class="ret-line">Market cap, 24h volume, high / low</div>
+            <div class="ret-line">A sharp one-line read on the structure</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="uc" id="forecast">
+      <div class="uc-num">USE-CASE 02</div>
+      <h2>Get a price forecast</h2>
+      <p>Quant72 taps Allora's decentralized ML network via <code class="mono accent">GET_PRICE_INFERENCE</code> to project price across 5-minute to 24-hour horizons, each with a confidence score.</p>
+      <div class="uc-demo">
+        <div class="prompts">
+          <div class="prompt-lbl">Try asking</div>
+          <a class="prompt" href="app.html?q=What%27s%20the%206h%20price%20forecast%20for%20SOL%3F"><span class="chev">›_</span>What's the 6h forecast for SOL?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Where%20is%20WIF%20going%20to%20be%20in%2024h%3F"><span class="chev">›_</span>Where will WIF be in 24h?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Predict%20BONK%20price"><span class="chev">›_</span>Predict BONK price<span class="go">run ↗</span></a>
+        </div>
+        <div class="returns">
+          <div class="returns-hd"><span class="tag">returns</span> GET_PRICE_INFERENCE</div>
+          <div class="returns-bd">
+            <div class="ret-line">Forecasts across 5m / 15m / 1h / 6h / 24h</div>
+            <div class="ret-line">Projected % move per timeframe</div>
+            <div class="ret-line">Model confidence on each horizon</div>
+            <div class="ret-line">A directional read with a caveat</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="uc" id="trending">
+      <div class="uc-num">USE-CASE 03</div>
+      <h2>Track what's trending</h2>
+      <p>Surface the tokens, pools and gainers capital is rotating into right now — aggregated from CoinGecko and ELFA via the trending radar.</p>
+      <div class="uc-demo">
+        <div class="prompts">
+          <div class="prompt-lbl">Try asking</div>
+          <a class="prompt" href="app.html?q=What%27s%20trending%20on%20Solana%20right%20now%3F"><span class="chev">›_</span>What's trending on Solana right now?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Show%20trending%20liquidity%20pools"><span class="chev">›_</span>Show trending liquidity pools<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Top%20gainers%20today"><span class="chev">›_</span>Top gainers today<span class="go">run ↗</span></a>
+        </div>
+        <div class="returns">
+          <div class="returns-hd"><span class="tag">returns</span> TRENDING · POOLS · GAINERS</div>
+          <div class="returns-bd">
+            <div class="ret-line">Ranked trending tokens with sparklines</div>
+            <div class="ret-line">Hot pools by TVL, volume &amp; APR</div>
+            <div class="ret-line">24h top gainers leaderboard</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="uc" id="narratives">
+      <div class="uc-num">USE-CASE 04</div>
+      <h2>Read the narratives</h2>
+      <p>Markets move on stories. <code class="mono accent">GET_ALL_TOPICS</code> maps the active narratives — AI, DePIN, memes, RWA — and ranks them by momentum so you see where attention is compounding.</p>
+      <div class="uc-demo">
+        <div class="prompts">
+          <div class="prompt-lbl">Try asking</div>
+          <a class="prompt" href="app.html?q=Which%20narratives%20are%20heating%20up%3F"><span class="chev">›_</span>Which narratives are heating up?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=What%27s%20the%20current%20meta%20on%20Solana%3F"><span class="chev">›_</span>What's the current meta on Solana?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Show%20me%20topic%20rotation"><span class="chev">›_</span>Show me topic rotation<span class="go">run ↗</span></a>
+        </div>
+        <div class="returns">
+          <div class="returns-hd"><span class="tag">returns</span> GET_ALL_TOPICS</div>
+          <div class="returns-bd">
+            <div class="ret-line">Ranked narratives with momentum scores</div>
+            <div class="ret-line">Mention velocity &amp; 24h change</div>
+            <div class="ret-line">Representative tokens per theme</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="uc" id="sentiment">
+      <div class="uc-num">USE-CASE 05</div>
+      <h2>Gauge smart-money sentiment</h2>
+      <p>Pull what credible accounts are actually saying. <code class="mono accent">ELFA_GET_SMART_MENTIONS</code> scores sentiment and shows the smart-money posts behind it for any ticker.</p>
+      <div class="uc-demo">
+        <div class="prompts">
+          <div class="prompt-lbl">Try asking</div>
+          <a class="prompt" href="app.html?q=What%27s%20smart-money%20sentiment%20on%20JUP%3F"><span class="chev">›_</span>Smart-money sentiment on JUP?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=What%20are%20people%20saying%20about%20WIF%3F"><span class="chev">›_</span>What are people saying about WIF?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Twitter%20mentions%20for%20SOL"><span class="chev">›_</span>Twitter mentions for SOL<span class="go">run ↗</span></a>
+        </div>
+        <div class="returns">
+          <div class="returns-hd"><span class="tag">returns</span> ELFA_GET_SMART_MENTIONS</div>
+          <div class="returns-bd">
+            <div class="ret-line">Bullish / bearish sentiment gauge</div>
+            <div class="ret-line">24h mention count &amp; smart-account posts</div>
+            <div class="ret-line">Per-post sentiment &amp; influence</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="uc" id="risk">
+      <div class="uc-num">USE-CASE 06</div>
+      <h2>Screen a token for risk</h2>
+      <p>Before you ape, run <code class="mono accent">GET_ASSET</code> to score rug risk — mint &amp; freeze authority, holder concentration, liquidity depth and an overall risk grade.</p>
+      <div class="uc-demo">
+        <div class="prompts">
+          <div class="prompt-lbl">Try asking</div>
+          <a class="prompt" href="app.html?q=Analyze%20BONK%20for%20rug%20risk"><span class="chev">›_</span>Analyze BONK for rug risk<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Is%20WIF%20safe%3F"><span class="chev">›_</span>Is WIF safe?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=Check%20JUP%20token%20risk"><span class="chev">›_</span>Check JUP token risk<span class="go">run ↗</span></a>
+        </div>
+        <div class="returns">
+          <div class="returns-hd"><span class="tag">returns</span> GET_ASSET</div>
+          <div class="returns-bd">
+            <div class="ret-line">Overall risk score &amp; grade</div>
+            <div class="ret-line">Mint / freeze authority checks</div>
+            <div class="ret-line">Holder concentration &amp; liquidity depth</div>
+            <div class="ret-line">Pass / fail safety checklist</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="uc" id="portfolio">
+      <div class="uc-num">USE-CASE 07</div>
+      <h2>Watch your portfolio</h2>
+      <p>Quant72 reads balances with <code class="mono accent">TOKEN_BALANCES</code> and can move assets with <code class="mono accent">TRANSFER</code> — all in the chat. The demo wallet shows the shape of it.</p>
+      <div class="uc-demo">
+        <div class="prompts">
+          <div class="prompt-lbl">Try asking</div>
+          <a class="prompt" href="app.html?q=Show%20my%20portfolio"><span class="chev">›_</span>Show my portfolio<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=What%27s%20my%20wallet%20balance%3F"><span class="chev">›_</span>What's my wallet balance?<span class="go">run ↗</span></a>
+          <a class="prompt" href="app.html?q=What%20are%20my%20holdings%3F"><span class="chev">›_</span>What are my holdings?<span class="go">run ↗</span></a>
+        </div>
+        <div class="returns">
+          <div class="returns-hd"><span class="tag">returns</span> TOKEN_BALANCES</div>
+          <div class="returns-bd">
+            <div class="ret-line">Total portfolio value</div>
+            <div class="ret-line">Per-asset balance, value &amp; 24h move</div>
+            <div class="ret-line">Sorted by position size</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<section class="g-cta">
+  <div class="kicker" style="justify-content:center;">Ready?</div>
+  <h2>Open the Terminal and ask away.</h2>
+  <p>Every prompt above runs live. Type your own — Quant72 figures out the right tool.</p>
+  <div class="hero-cta" style="display:flex;gap:14px;justify-content:center;">
+    <a href="app.html" class="btn btn-primary">▶ Launch Terminal</a>
+    <a href="docs.html" class="btn">Read the docs</a>
+  </div>
+</section>
+
+<script>
+  const links = [...document.querySelectorAll("#rail a")];
+  const secs = links.map((a) => document.querySelector(a.getAttribute("href")));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const id = "#" + e.target.id;
+        links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === id));
+      }
+    });
+  }, { rootMargin: "-80px 0px -65% 0px" });
+  secs.forEach((s) => s && obs.observe(s));
+</script>
+<script>window.Q72_TWEAKS_CONFIG = ["accent","font","glow"];</script>
+<script src="js/tweaks.js"></script>
+</body>
+</html>
