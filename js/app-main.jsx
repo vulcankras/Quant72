@@ -248,6 +248,7 @@ function App() {
             <a href="index.html">Home</a>
             <a href="docs.html">Docs</a>
             <a href="guide.html">Guide</a>
+            <a href="https://x.com/MeetQuant72AI" target="_blank" rel="noopener">X ↗</a>
           </div>
         </div>
 
